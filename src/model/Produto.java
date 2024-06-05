@@ -18,17 +18,6 @@ public class Produto {
         this.tipo = tipo;
     }
 
-    public Produto() {
-    }
-
-    public String print() {
-        return this.codigo + ", " +
-                this.nome + ", " +
-                this.quantidade.toString() + ", " +
-                this.valor.toString() + ", " +
-                this.tipo;
-    }
-
     public String getCodigo() {
         return codigo;
     }
@@ -67,5 +56,16 @@ public class Produto {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public Produto() {
+    }
+
+    public String print() {
+        return this.codigo + ", " +
+                this.nome + ", " +
+                this.quantidade.toString() + ", " +
+                this.valor.toString() + ", " +
+                this.tipo;
     }
 }
