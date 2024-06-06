@@ -1,5 +1,6 @@
 package service;
 
+import exception.ErroInternoException;
 import model.Produto;
 import service.contrato.CrudService;
 
@@ -11,13 +12,13 @@ import java.util.List;
 public class ProdutoServiceImpl implements CrudService<Produto> {
 
     @Override
-    public Produto buscar(List<Produto> listaProdutos, String codigoProduto) {
+    public Produto buscar(List<Produto> listaProdutos, String codigoProduto) throws ErroInternoException {
         for(Produto p : listaProdutos) {
             if (p.getCodigo().equals(codigoProduto)) {
                return p;
             }
         }
-        throw new RuntimeException("O produto não existe");
+        throw new ErroInternoException("Erro ao buscar produto");
     }
 
     public void criar(List<Produto> listaProdutos, Produto novoProduto) {

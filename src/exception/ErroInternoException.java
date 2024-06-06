@@ -2,7 +2,7 @@ package exception;
 
 public class ErroInternoException extends Exception {
 
-    public ErroInternoException() {
-        super("Ocorreu um erro!");
+    public ErroInternoException(String errorMessage) {
+        super("Ocorreu um erro!" + errorMessage);
     }
 }

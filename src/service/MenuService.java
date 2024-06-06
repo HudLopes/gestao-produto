@@ -1,6 +1,8 @@
 package service;
 
 import enums.TipoOperacao;
+import exception.ErroInternoException;
+import model.Cliente;
 import model.Produto;
 
 import java.util.Scanner;
@@ -14,8 +16,8 @@ public class MenuService {
             System.out.print("\n=============================================================================");
             System.out.println("\n\n Gestão de Estoque \n\n" +
                     "1 - Clientes \n" +
-                    "2 - Fornecedores \n" +
-                    "3 - Produtos \n" +
+                    "2 - Produtos \n" +
+                    "3 - Fornecedores \n" +
                     "\n4 - Sair ");
 
             System.out.print("\nEntre com a opção [number]: ");
@@ -50,7 +52,7 @@ public class MenuService {
             Scanner opcao = new Scanner(System.in);
             numeroDigitado = opcao.nextInt();
 
-            validarNumeroDigitadoSubMenu(numeroDigitado);
+            validarNumeroDigitadoSubMenu(numeroDigitado, 1, 5);
 
             System.out.print("\n=============================================================================");
         } catch (Exception exception) {
@@ -88,10 +90,33 @@ public class MenuService {
         return produto;
     }
 
-    public String criarMenuCapturarCodigoProduto() {
+    public Cliente criarMenuAdicionarCliente() {
+        Cliente c = new Cliente();
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("\n\nEntre com o codigo do produto: ");
+        System.out.print("\n\nEntre com o codigo do Cliente: ");
+        var codigo = sc.nextLine();
+        c.setCodigo(codigo);
+
+        System.out.print("\nEntre com o nome do cliente: ");
+        var nome = sc.nextLine();
+        c.setNome(nome);
+
+        System.out.print("\nEntre com o email do cliente: ");
+        var email = sc.nextLine();
+        c.setEmail(email);
+
+        System.out.print("\nEntre com a idade do cliente: ");
+        var idade = sc.nextInt();
+        c.setIdade(idade);
+
+        return c;
+    }
+
+    public String criarMenuCapturarCodigo() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("\n\nEntre com o codigo: ");
         return sc.nextLine();
     }
 
@@ -101,8 +126,8 @@ public class MenuService {
         }
     }
 
-    private void validarNumeroDigitadoSubMenu(Integer numero) {
-        if (numero < 1 || numero > 5) {
+    private void validarNumeroDigitadoSubMenu(Integer numero, int numInicial, int numFinal) {
+        if (numero < numInicial || numero > numFinal) {
             throw new RuntimeException("Numero Invalido");
         }
     }
@@ -129,12 +154,63 @@ public class MenuService {
             Scanner opcao = new Scanner(System.in);
             numeroDigitado = opcao.nextInt();
 
-            validarNumeroDigitadoSubMenu(numeroDigitado);
+            validarNumeroDigitadoSubMenu(numeroDigitado, 1 ,5);
 
             System.out.print("\n=============================================================================");
         } catch (Exception exception) {
             System.out.println("Entrada inválida, é necessario digitar um numero entre 1 e 5.");
             criarMenu();
+        }
+
+        return numeroDigitado;
+    }
+
+    public Integer criarMenuAlterarFornecedor() {
+        Integer numeroDigitado = 0;
+
+        try {
+            System.out.print("\n=============================================================================");
+            System.out.println("\n\n Alterar Fornecedor \n\n" +
+                    "1 - Nome \n" +
+                    "2 - Telefone \n" +
+                    "\n3 - Cancelar ");
+
+            System.out.print("\nEntre com a opção [number]: ");
+            Scanner opcao = new Scanner(System.in);
+            numeroDigitado = opcao.nextInt();
+
+            validarNumeroDigitadoSubMenu(numeroDigitado, 1 ,3);
+
+            System.out.print("\n=============================================================================");
+        } catch (Exception exception) {
+            System.out.println("Entrada inválida, é necessario digitar um numero entre 1 e 5.");
+            criarMenu();
+        }
+
+        return numeroDigitado;
+    }
+
+
+    public Integer criarMenuAlterarCliente() throws ErroInternoException {
+        Integer numeroDigitado = 0;
+
+        try {
+            System.out.print("\n=============================================================================");
+            System.out.println("\n\n Alterar Cliente \n\n" +
+                    "1 - Nome \n" +
+                    "2 - Email \n" +
+                    "3 - Idade \n" +
+                    "4 - Canelar");
+
+            System.out.print("\nEntre com a opção [number]: ");
+            Scanner opcao = new Scanner(System.in);
+            numeroDigitado = opcao.nextInt();
+
+            validarNumeroDigitadoSubMenu(numeroDigitado,1, 4);
+
+            System.out.print("\n=============================================================================");
+        } catch (Exception exception) {
+            throw new ErroInternoException("Entrada inválida, é necessario digitar um numero entre 1 e 4.");
         }
 
         return numeroDigitado;
