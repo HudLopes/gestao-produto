@@ -3,6 +3,7 @@ package service;
 import enums.TipoOperacao;
 import exception.ErroInternoException;
 import model.Cliente;
+import model.Fornecedor;
 import model.Produto;
 
 import java.util.Scanner;
@@ -88,6 +89,29 @@ public class MenuService {
         produto.setValor(valor);
 
         return produto;
+    }
+
+    public Fornecedor criarMenuAdicionarFornecedor() {
+        Fornecedor fornecedor = new Fornecedor();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("\n\nEntre com o codigo do fornecedor: ");
+        var codigo = sc.nextLine();
+        fornecedor.setCodigo(codigo);
+
+        System.out.print("\nEntre com o nome do produto: ");
+        var nome = sc.nextLine();
+        fornecedor.setNome(nome);
+
+        System.out.print("\nEntre com o tipo do produto: ");
+        var cpnj = sc.nextLine();
+        fornecedor.setCnpj(cpnj);
+
+        System.out.print("\nEntre com o tipo do produto: ");
+        var telefone = sc.nextLine();
+        fornecedor.setTelefone(telefone);
+
+        return fornecedor;
     }
 
     public Cliente criarMenuAdicionarCliente() {

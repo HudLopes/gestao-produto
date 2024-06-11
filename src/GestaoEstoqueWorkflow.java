@@ -73,8 +73,8 @@ public class GestaoEstoqueWorkflow {
     private static void realizarAcaoFornecedores(Integer numeroOpcao, List<Produto> listaProdutos, List<Fornecedor> listaFornecedores, List<Cliente> listaClientes) throws ErroInternoException {
         switch (numeroOpcao) {
             case 1:
-                var produto = menuService.criarMenuAdicionarProduto();
-                produtoService.criar(listaProdutos, produto);
+                var fornecedor = menuService.criarMenuAdicionarFornecedor();
+                fornecedoresService.criar(listaFornecedores, fornecedor);
                 renderizarMenuPrincipal(listaProdutos, listaFornecedores, listaClientes);
                 break;
             case 2:
@@ -89,8 +89,8 @@ public class GestaoEstoqueWorkflow {
                 break;
             case 3:
                 var codigoAlterar = menuService.criarMenuCapturarCodigo();
-                var produtoExiste = fornecedoresService.existe(listaFornecedores, codigoAlterar);
-                if (produtoExiste) {
+                var fornecedorExiste = fornecedoresService.existe(listaFornecedores, codigoAlterar);
+                if (fornecedorExiste) {
                     var opcao = menuService.criarMenuAlterarFornecedor();
                     var fornecedorAlterar = receberCampoAlteradoFornecedor(opcao, listaFornecedores, codigoAlterar);
                     fornecedoresService.editar(listaFornecedores, fornecedorAlterar);
@@ -132,7 +132,7 @@ public class GestaoEstoqueWorkflow {
                 var codigoAlterar = menuService.criarMenuCapturarCodigo();
                 var clienteExiste = clienteService.existe(listaClientes, codigoAlterar);
                 if (clienteExiste) {
-                    var opcao = menuService. criarMenuAlterarCliente();
+                    var opcao = menuService.criarMenuAlterarCliente();
                     var clienteAlterado = receberCampoAlteradoCliente(opcao, listaClientes, codigoAlterar);
                     clienteService.editar(listaClientes, clienteAlterado);
                     System.out.println("Cliente alterado com sucesso!");

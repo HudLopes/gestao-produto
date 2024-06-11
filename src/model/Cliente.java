@@ -1,20 +1,26 @@
 package model;
 
-public class Cliente {
+import java.math.BigDecimal;
+
+public class Cliente extends Pessoa {
 
     private String codigo;
-    private String nome;
     private String email;
     private Integer idade;
 
-    public Cliente(String nome, String codigo, String email, Integer idade) {
-        this.nome = nome;
-        this.codigo = codigo;
-        this.email = email;
-        this.idade = idade;
+    public Cliente(String nome) {
+        super(nome);
     }
 
     public Cliente() {
+        super();
+    }
+
+    public Cliente(String nome, String codigo, String email, Integer idade) {
+        super(nome);
+        this.codigo = codigo;
+        this.email = email;
+        this.idade = idade;
     }
 
     public String getCodigo() {
@@ -23,14 +29,6 @@ public class Cliente {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getEmail() {

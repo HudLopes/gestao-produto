@@ -14,6 +14,10 @@ public class Fornecedor {
         this.telefone = telefone;
     }
 
+    public Fornecedor() {
+
+    }
+
     public String getCodigo() {
         return codigo;
     }
